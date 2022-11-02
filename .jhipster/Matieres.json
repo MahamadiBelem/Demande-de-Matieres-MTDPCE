@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20220929145412",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "matieres",
+  "fields": [
+    {
+      "fieldName": "designationMatieres",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "quantiteMatieres",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "caracteristiquesMatieres",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "statutSup",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Matieres",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "livraisonMatieres",
+      "otherEntityRelationshipName": "matieres",
+      "ownerSide": false,
+      "relationshipName": "livraisonMatieres",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

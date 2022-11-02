@@ -1,0 +1,86 @@
+<div>
+  <h2 id="page-heading" data-cy="RevisionVehiculeHeading">
+    <span>Revision Vehicules</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-revision-vehicule"
+        [routerLink]="['/revision-vehicule/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Revision Vehicule </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="revisionVehicules?.length === 0">
+    <span>No revisionVehicules found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="revisionVehicules && revisionVehicules.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Libelle Revision Vehicule</span></th>
+          <th scope="col"><span>Carnet Vehicule</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let revisionVehicule of revisionVehicules; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/revision-vehicule', revisionVehicule.id, 'view']">{{ revisionVehicule.id }}</a>
+          </td>
+          <td>{{ revisionVehicule.libelleRevisionVehicule }}</td>
+          <td>
+            <div *ngIf="revisionVehicule.carnetVehicule">
+              <a [routerLink]="['/carnet-vehicule', revisionVehicule.carnetVehicule?.id, 'view']">{{
+                revisionVehicule.carnetVehicule?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/revision-vehicule', revisionVehicule.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/revision-vehicule', revisionVehicule.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(revisionVehicule)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

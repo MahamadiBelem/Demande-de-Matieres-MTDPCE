@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="revisionVehicule">
+      <h2 data-cy="revisionVehiculeDetailsHeading"><span>Revision Vehicule</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ revisionVehicule.id }}</span>
+        </dd>
+        <dt><span>Libelle Revision Vehicule</span></dt>
+        <dd>
+          <span>{{ revisionVehicule.libelleRevisionVehicule }}</span>
+        </dd>
+        <dt><span>Carnet Vehicule</span></dt>
+        <dd>
+          <div *ngIf="revisionVehicule.carnetVehicule">
+            <a [routerLink]="['/carnet-vehicule', revisionVehicule.carnetVehicule?.id, 'view']">{{
+              revisionVehicule.carnetVehicule?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/revision-vehicule', revisionVehicule.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-livraison-matieres-heading" data-cy="LivraisonMatieresCreateUpdateHeading">Create or edit a Livraison Matieres</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_designationMatiere">Designation Matiere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="designationMatiere"
+            id="field_designationMatiere"
+            data-cy="designationMatiere"
+            formControlName="designationMatiere"
+          />
+          <div
+            *ngIf="
+              editForm.get('designationMatiere')!.invalid &&
+              (editForm.get('designationMatiere')!.dirty || editForm.get('designationMatiere')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('designationMatiere')?.errors?.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('designationMatiere')?.errors?.minlength">
+              This field is required to be at least 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_quantiteLivree">Quantite Livree</label>
+          <input
+            type="number"
+            class="form-control"
+            name="quantiteLivree"
+            id="field_quantiteLivree"
+            data-cy="quantiteLivree"
+            formControlName="quantiteLivree"
+          />
+          <div
+            *ngIf="
+              editForm.get('quantiteLivree')!.invalid && (editForm.get('quantiteLivree')!.dirty || editForm.get('quantiteLivree')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('quantiteLivree')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('quantiteLivree')?.errors?.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateLivree">Date Livree</label>
+          <div class="d-flex">
+            <input
+              id="field_dateLivree"
+              data-cy="dateLivree"
+              type="datetime-local"
+              class="form-control"
+              name="dateLivree"
+              formControlName="dateLivree"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_statutSup">Statut Sup</label>
+          <input type="checkbox" class="form-check" name="statutSup" id="field_statutSup" data-cy="statutSup" formControlName="statutSup" />
+        </div>
+
+        <div class="row mb-3">
+          <label for="field_matieres">Matieres</label>
+          <select class="form-control" id="field_matieres" data-cy="matieres" multiple name="matieres" formControlName="matieres">
+            <option
+              [ngValue]="getSelectedMatieres(matieresOption, editForm.get('matieres')!.value)"
+              *ngFor="let matieresOption of matieresSharedCollection; trackBy: trackMatieresById"
+            >
+              {{ matieresOption.designationMatieres }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_structure">Structure</label>
+          <select class="form-control" id="field_structure" data-cy="structure" name="structure" formControlName="structure">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="structureOption.id === editForm.get('structure')!.value?.id ? editForm.get('structure')!.value : structureOption"
+              *ngFor="let structureOption of structuresSharedCollection; trackBy: trackStructureById"
+            >
+              {{ structureOption.libelleStructure }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

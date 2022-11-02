@@ -1,0 +1,75 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="carnetVehicule">
+      <h2 data-cy="carnetVehiculeDetailsHeading"><span>Carnet Vehicule</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ carnetVehicule.id }}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+          <span>{{ carnetVehicule.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Immatriculation Vehicule</span></dt>
+        <dd>
+          <span>{{ carnetVehicule.immatriculationVehicule }}</span>
+        </dd>
+        <dt><span>Identite Conducteur</span></dt>
+        <dd>
+          <span>{{ carnetVehicule.identiteConducteur }}</span>
+        </dd>
+        <dt><span>Nombre Reparation</span></dt>
+        <dd>
+          <span>{{ carnetVehicule.nombreReparation }}</span>
+        </dd>
+        <dt><span>Date Derniere Revision</span></dt>
+        <dd>
+          <span>{{ carnetVehicule.dateDerniereRevision | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Etatvehicule</span></dt>
+        <dd>
+          <span>{{ carnetVehicule.etatvehicule }}</span>
+        </dd>
+        <dt><span>Observations</span></dt>
+        <dd>
+          <span>{{ carnetVehicule.observations }}</span>
+        </dd>
+        <dt><span>Statut Sup</span></dt>
+        <dd>
+          <span>{{ carnetVehicule.statutSup }}</span>
+        </dd>
+        <dt><span>Marque Vehicule</span></dt>
+        <dd>
+          <div *ngIf="carnetVehicule.marqueVehicule">
+            <a [routerLink]="['/marque-vehicule', carnetVehicule.marqueVehicule?.id, 'view']">{{
+              carnetVehicule.marqueVehicule?.libelleMarqueVehicule
+            }}</a>
+          </div>
+        </dd>
+        <dt><span>Structure</span></dt>
+        <dd>
+          <span *ngFor="let structure of carnetVehicule.structures; let last = last">
+            <a [routerLink]="['/structure', structure?.id, 'view']">{{ structure.libelleStructure }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/carnet-vehicule', carnetVehicule.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

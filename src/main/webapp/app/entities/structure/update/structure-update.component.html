@@ -1,0 +1,87 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-structure-heading" data-cy="StructureCreateUpdateHeading">Create or edit a Structure</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_libelleStructure">Libelle Structure</label>
+          <input
+            type="text"
+            class="form-control"
+            name="libelleStructure"
+            id="field_libelleStructure"
+            data-cy="libelleStructure"
+            formControlName="libelleStructure"
+          />
+          <div
+            *ngIf="
+              editForm.get('libelleStructure')!.invalid &&
+              (editForm.get('libelleStructure')!.dirty || editForm.get('libelleStructure')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('libelleStructure')?.errors?.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('libelleStructure')?.errors?.minlength">
+              This field is required to be at least 2 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_codeStructure">Code Structure</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codeStructure"
+            id="field_codeStructure"
+            data-cy="codeStructure"
+            formControlName="codeStructure"
+          />
+          <div
+            *ngIf="
+              editForm.get('codeStructure')!.invalid && (editForm.get('codeStructure')!.dirty || editForm.get('codeStructure')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('codeStructure')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('codeStructure')?.errors?.minlength">
+              This field is required to be at least 2 characters.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('codeStructure')?.errors?.pattern">
+              This field should follow pattern for "Code Structure".
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn btn-info me-2" (click)="cancel()">
+          <fa-icon icon="sync"></fa-icon>
+          <span>Fermer</span>
+        </button>
+
+        <!--button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button-->
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+{
+  "applications": "*",
+  "changelogDate": "20220929145408",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "type_matiere",
+  "fields": [
+    {
+      "fieldName": "libelleTypeMatiere",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "3"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TypeMatiere",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "demandeReparations",
+      "otherEntityRelationshipName": "typeMatiere",
+      "ownerSide": false,
+      "relationshipName": "demandeReparations",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

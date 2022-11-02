@@ -1,0 +1,105 @@
+<div>
+  <h2 id="page-heading" data-cy="DemandeReparationsHeading">
+    <span>Demande Reparations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-demande-reparations"
+        [routerLink]="['/demande-reparations/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Demande Reparations </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="demandeReparations?.length === 0">
+    <span>No demandeReparations found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="demandeReparations && demandeReparations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Date</span></th>
+          <th scope="col"><span>Indentite Soumettant</span></th>
+          <th scope="col"><span>Fonction</span></th>
+          <th scope="col"><span>Designation</span></th>
+          <th scope="col"><span>Observation</span></th>
+          <th scope="col"><span>Statut Sup</span></th>
+          <th scope="col"><span>Type Matiere</span></th>
+          <th scope="col"><span>Structure</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let demandeReparations of demandeReparations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/demande-reparations', demandeReparations.id, 'view']">{{ demandeReparations.id }}</a>
+          </td>
+          <td>{{ demandeReparations.date | formatMediumDatetime }}</td>
+          <td>{{ demandeReparations.indentiteSoumettant }}</td>
+          <td>{{ demandeReparations.fonction }}</td>
+          <td>{{ demandeReparations.designation }}</td>
+          <td>{{ demandeReparations.observation }}</td>
+          <td>{{ demandeReparations.statutSup }}</td>
+          <td>
+            <span *ngFor="let typeMatiere of demandeReparations.typeMatieres; let last = last">
+              <a class="form-control-static" [routerLink]="['/type-matiere', typeMatiere.id, 'view']">{{
+                typeMatiere.libelleTypeMatiere
+              }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td>
+            <div *ngIf="demandeReparations.structure">
+              <a [routerLink]="['/structure', demandeReparations.structure?.id, 'view']">{{
+                demandeReparations.structure?.libelleStructure
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/demande-reparations', demandeReparations.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/demande-reparations', demandeReparations.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(demandeReparations)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

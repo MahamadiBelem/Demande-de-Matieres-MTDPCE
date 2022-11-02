@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20220929145413",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "livraison_matieres",
+  "fields": [
+    {
+      "fieldName": "designationMatiere",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "quantiteLivree",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateLivree",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "statutSup",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "LivraisonMatieres",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "designationMatieres",
+      "otherEntityName": "matieres",
+      "otherEntityRelationshipName": "livraisonMatieres",
+      "ownerSide": true,
+      "relationshipName": "matieres",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "libelleStructure",
+      "otherEntityName": "structure",
+      "otherEntityRelationshipName": "livraisonMatieres",
+      "relationshipName": "structure",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,71 @@
+{
+  "applications": "*",
+  "changelogDate": "20220929145409",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "carnet_vehicule",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "immatriculationVehicule",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "identiteConducteur",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nombreReparation",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dateDerniereRevision",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "etatvehicule",
+      "fieldType": "Etatvehicule",
+      "fieldValues": "Operationel,NonOperationel"
+    },
+    {
+      "fieldName": "observations",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "statutSup",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CarnetVehicule",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "libelleMarqueVehicule",
+      "otherEntityName": "marqueVehicule",
+      "otherEntityRelationshipName": "carnetVehicule",
+      "ownerSide": true,
+      "relationshipName": "marqueVehicule",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "libelleStructure",
+      "otherEntityName": "structure",
+      "otherEntityRelationshipName": "carnetVehicule",
+      "ownerSide": true,
+      "relationshipName": "structure",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

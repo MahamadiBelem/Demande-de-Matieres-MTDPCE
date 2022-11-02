@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity CarnetVehicule.
+    -->
+    <changeSet id="20220929145409-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="marque_vehicule_id"
+                                 baseTableName="carnet_vehicule"
+                                 constraintName="fk_carnet_vehicule__marque_vehicule_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="marque_vehicule"/>
+
+        <addForeignKeyConstraint baseColumnNames="carnet_vehicule_id"
+                                 baseTableName="rel_carnet_vehicule__structure"
+                                 constraintName="fk_rel_carnet_vehicule__structure__carnet_vehicule_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="carnet_vehicule"/>
+
+        <addForeignKeyConstraint baseColumnNames="structure_id"
+                                 baseTableName="rel_carnet_vehicule__structure"
+                                 constraintName="fk_rel_carnet_vehicule__structure__structure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="structure"/>
+    </changeSet>
+</databaseChangeLog>

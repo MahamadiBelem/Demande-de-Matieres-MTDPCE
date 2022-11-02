@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandeReparations">
+      <h2 data-cy="demandeReparationsDetailsHeading"><span>Demande Reparations</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ demandeReparations.id }}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+          <span>{{ demandeReparations.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Indentite Soumettant</span></dt>
+        <dd>
+          <span>{{ demandeReparations.indentiteSoumettant }}</span>
+        </dd>
+        <dt><span>Fonction</span></dt>
+        <dd>
+          <span>{{ demandeReparations.fonction }}</span>
+        </dd>
+        <dt><span>Designation</span></dt>
+        <dd>
+          <span>{{ demandeReparations.designation }}</span>
+        </dd>
+        <dt><span>Observation</span></dt>
+        <dd>
+          <span>{{ demandeReparations.observation }}</span>
+        </dd>
+        <dt><span>Statut Sup</span></dt>
+        <dd>
+          <span>{{ demandeReparations.statutSup }}</span>
+        </dd>
+        <dt><span>Type Matiere</span></dt>
+        <dd>
+          <span *ngFor="let typeMatiere of demandeReparations.typeMatieres; let last = last">
+            <a [routerLink]="['/type-matiere', typeMatiere?.id, 'view']">{{ typeMatiere.libelleTypeMatiere }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span>Structure</span></dt>
+        <dd>
+          <div *ngIf="demandeReparations.structure">
+            <a [routerLink]="['/structure', demandeReparations.structure?.id, 'view']">{{
+              demandeReparations.structure?.libelleStructure
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demande-reparations', demandeReparations.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

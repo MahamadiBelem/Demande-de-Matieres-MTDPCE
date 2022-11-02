@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandeMatieres">
+      <h2 data-cy="demandeMatieresDetailsHeading"><span>Demande Matieres</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ demandeMatieres.id }}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+          <span>{{ demandeMatieres.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Indentite Soumettant</span></dt>
+        <dd>
+          <span>{{ demandeMatieres.indentiteSoumettant }}</span>
+        </dd>
+        <dt><span>Fonction</span></dt>
+        <dd>
+          <span>{{ demandeMatieres.fonction }}</span>
+        </dd>
+        <dt><span>Designation</span></dt>
+        <dd>
+          <span>{{ demandeMatieres.designation }}</span>
+        </dd>
+        <dt><span>Quantite</span></dt>
+        <dd>
+          <span>{{ demandeMatieres.quantite }}</span>
+        </dd>
+        <dt><span>Observation</span></dt>
+        <dd>
+          <span>{{ demandeMatieres.observation }}</span>
+        </dd>
+        <dt><span>Statut Sup</span></dt>
+        <dd>
+          <span>{{ demandeMatieres.statutSup }}</span>
+        </dd>
+        <dt><span>Structure</span></dt>
+        <dd>
+          <div *ngIf="demandeMatieres.structure">
+            <a [routerLink]="['/structure', demandeMatieres.structure?.id, 'view']">{{ demandeMatieres.structure?.libelleStructure }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demande-matieres', demandeMatieres.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity DemandeReparations.
+    -->
+    <changeSet id="20220929145407-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="demande_reparations_id"
+                                 baseTableName="rel_demande_reparations__type_matiere"
+                                 constraintName="fk_rel_demande_reparations__typ__demande_reparations_29_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="demande_reparations"/>
+
+        <addForeignKeyConstraint baseColumnNames="type_matiere_id"
+                                 baseTableName="rel_demande_reparations__type_matiere"
+                                 constraintName="fk_rel_demande_reparations__type_matiere__type_matiere_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="type_matiere"/>
+
+        <addForeignKeyConstraint baseColumnNames="structure_id"
+                                 baseTableName="demande_reparations"
+                                 constraintName="fk_demande_reparations__structure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="structure"/>
+    </changeSet>
+</databaseChangeLog>

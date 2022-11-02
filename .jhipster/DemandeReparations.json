@@ -1,0 +1,64 @@
+{
+  "applications": "*",
+  "changelogDate": "20220929145407",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "demande_reparations",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "indentiteSoumettant",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "5"
+    },
+    {
+      "fieldName": "fonction",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "designation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "observation",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "statutSup",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DemandeReparations",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "libelleTypeMatiere",
+      "otherEntityName": "typeMatiere",
+      "otherEntityRelationshipName": "demandeReparations",
+      "ownerSide": true,
+      "relationshipName": "typeMatiere",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "libelleStructure",
+      "otherEntityName": "structure",
+      "otherEntityRelationshipName": "demandeReparations",
+      "relationshipName": "structure",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

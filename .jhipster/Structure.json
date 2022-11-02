@@ -1,0 +1,55 @@
+{
+  "applications": "*",
+  "changelogDate": "20220929145405",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "structure",
+  "fields": [
+    {
+      "fieldName": "libelleStructure",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "fieldName": "codeStructure",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "pattern"],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesPattern": "^[a-zA-Z0-9]*$"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Structure",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "demandeMatieres",
+      "otherEntityRelationshipName": "structure",
+      "relationshipName": "demandeMatieres",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "demandeReparations",
+      "otherEntityRelationshipName": "structure",
+      "relationshipName": "demandeReparations",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "livraisonMatieres",
+      "otherEntityRelationshipName": "structure",
+      "relationshipName": "livraisonMatieres",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "carnetVehicule",
+      "otherEntityRelationshipName": "structure",
+      "ownerSide": false,
+      "relationshipName": "carnetVehicule",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

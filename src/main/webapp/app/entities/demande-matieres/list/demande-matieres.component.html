@@ -1,0 +1,164 @@
+<!--ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+
+<hr>
+
+<pre>{{ closeResult }}</pre-->
+<!--button class="btn btn-lg btn-outline-primary" (click)="ouvrir()">ouvrir</button-->
+
+<!--h1>Angular 13 Bootstrap Modal Popup Example - ItSolutionStuff.com </h1>
+
+   
+
+
+
+   
+
+<ng-template #mymodal let-modal>
+
+  <div class="modal-header">
+
+    <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+      <span aria-hidden="true">×</span>
+
+    </button>
+
+  </div>
+
+  <div class="modal-body">
+
+    This is example from ItSolutionStuff.com
+
+  </div>
+
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+
+  </div>
+
+</ng-template -->
+
+<div>
+  <h2 id="page-heading" data-cy="DemandeMatieresHeading">
+    <span>Demande Matieres</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Actualiser</span>
+      </button>
+
+      <button class="btn btn-info me-2" (click)="savemodale()">
+        <fa-icon icon="sync"></fa-icon>
+        <span>Nouveau Matieres</span>
+      </button>
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-demande-matieres"
+        [routerLink]="['/demande-matieres/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Nouveau </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="demandeMatieres?.length === 0">
+    <span>No demandeMatieres found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="demandeMatieres && demandeMatieres.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Date</span></th>
+          <th scope="col"><span>Indentite Soumettant</span></th>
+          <th scope="col"><span>Fonction</span></th>
+          <th scope="col"><span>Designation</span></th>
+          <th scope="col"><span>Quantite</span></th>
+          <th scope="col"><span>Observation</span></th>
+          <th scope="col"><span>Statut Sup</span></th>
+          <th scope="col"><span>Structure</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let demandeMatieres of demandeMatieres; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/demande-matieres', demandeMatieres.id, 'view']">{{ demandeMatieres.id }}</a>
+          </td>
+          <td>{{ demandeMatieres.date | formatMediumDatetime }}</td>
+          <td>{{ demandeMatieres.indentiteSoumettant }}</td>
+          <td>{{ demandeMatieres.fonction }}</td>
+          <td>{{ demandeMatieres.designation }}</td>
+          <td>{{ demandeMatieres.quantite }}</td>
+          <td>{{ demandeMatieres.observation }}</td>
+          <td>{{ demandeMatieres.statutSup }}</td>
+          <td>
+            <div *ngIf="demandeMatieres.structure">
+              <a [routerLink]="['/structure', demandeMatieres.structure?.id, 'view']">{{ demandeMatieres.structure?.libelleStructure }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/demande-matieres', demandeMatieres.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/demande-matieres', demandeMatieres.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(demandeMatieres)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+
+entity Structure {
+    LibelleStructure String required minlength(2)
+}
+entity DemandeMatieres {
+    Date ZonedDateTime required
+	IndentiteSoumettant String required minlength(5)
+    Fonction String required minlength(3)
+    Designation String required minlength(3)
+    Quantite Integer required
+   Observation TextBlob
+   StatutSup Boolean
+}
+
+relationship OneToMany{
+    Structure{DemandeMatieres} to DemandeMatieres{Structure(LibelleStructure) }
+}
+
+entity DemandeReparations {
+    Date ZonedDateTime required
+	IndentiteSoumettant String required minlength(5)
+    Fonction String required minlength(3)
+    Designation String required minlength(3)
+   Observation TextBlob
+   StatutSup Boolean
+}
+
+relationship OneToMany{
+    Structure{DemandeReparations} to DemandeReparations{Structure(LibelleStructure) }
+}
+
+entity TypeMatiere{
+    LibelleTypeMatiere String required minlength(3)
+}
+
+entity CarnetVehicule {
+    Date ZonedDateTime required
+	ImmatriculationVehicule String required minlength(3)
+    IdentiteConducteur String required
+    NombreReparation Integer 
+    DateDerniereRevision LocalDate
+    Etatvehicule Etatvehicule
+    Observations TextBlob
+    StatutSup Boolean
+}
+enum Etatvehicule{
+Operationel,
+NonOperationel
+}
+relationship ManyToMany{
+CarnetVehicule{Structure(LibelleStructure) } to Structure{CarnetVehicule}
+}
+relationship OneToOne{
+CarnetVehicule{MarqueVehicule(LibelleMarqueVehicule) } to MarqueVehicule{CarnetVehicule}
+}
+entity MarqueVehicule{
+    LibelleMarqueVehicule String required minlength(3)
+}
+
+
+
+entity Matieres {
+    DesignationMatieres String required minlength(3)
+    QuantiteMatieres Integer required
+    CaracteristiquesMatieres TextBlob
+    StatutSup Boolean
+}
+relationship ManyToMany{
+LivraisonMatieres{Matieres(DesignationMatieres) }  to Matieres{LivraisonMatieres}
+
+DemandeReparations{TypeMatiere(LibelleTypeMatiere) } to TypeMatiere{DemandeReparations}
+}
+entity LivraisonMatieres{
+    DesignationMatiere String required minlength(3)
+    QuantiteLivree Integer required
+    DateLivree ZonedDateTime
+    StatutSup Boolean
+}
+relationship OneToMany{
+Structure{LivraisonMatieres} to LivraisonMatieres{Structure(LibelleStructure) }
+}
+
+
+

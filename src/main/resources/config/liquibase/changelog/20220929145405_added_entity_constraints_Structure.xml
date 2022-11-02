@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Structure.
+    -->
+    <changeSet id="20220929145405-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="structure_id"
+                                 baseTableName="rel_structure__relationstructurematiere"
+                                 constraintName="fk_rel_structure__relationstructurematiere__structure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="structure"/>
+
+        <addForeignKeyConstraint baseColumnNames="relationstructurematiere_id"
+                                 baseTableName="rel_structure__relationstructurematiere"
+                                 constraintName="fk_rel_structure__relationstruc__relationstructurematiere_0f_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="matieres"/>
+    </changeSet>
+</databaseChangeLog>

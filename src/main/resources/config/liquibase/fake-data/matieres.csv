@@ -1,0 +1,11 @@
+id;designation_matieres;quantite_matieres;caracteristiques_matieres;statut_sup
+1;Hat Consultant;6764;../fake-data/blob/hipster.txt;true
+2;e-business;30926;../fake-data/blob/hipster.txt;true
+3;Frozen implement;71821;../fake-data/blob/hipster.txt;false
+4;unleash c a;74680;../fake-data/blob/hipster.txt;false
+5;Berkshire;59943;../fake-data/blob/hipster.txt;true
+6;Ergonomic;55904;../fake-data/blob/hipster.txt;false
+7;Sausages Coordinateur;13291;../fake-data/blob/hipster.txt;true
+8;aXX;59903;../fake-data/blob/hipster.txt;false
+9;Borders Kids;40213;../fake-data/blob/hipster.txt;true
+10;Concrete;10550;../fake-data/blob/hipster.txt;false

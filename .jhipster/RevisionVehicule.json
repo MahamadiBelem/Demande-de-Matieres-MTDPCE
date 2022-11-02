@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20220929145411",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "revision_vehicule",
+  "fields": [
+    {
+      "fieldName": "libelleRevisionVehicule",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "3"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "RevisionVehicule",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "carnetVehicule",
+      "otherEntityRelationshipName": "revisionVehicule",
+      "relationshipName": "carnetVehicule",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

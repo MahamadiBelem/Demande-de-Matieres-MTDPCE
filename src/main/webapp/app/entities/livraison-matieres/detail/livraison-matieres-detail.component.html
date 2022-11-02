@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="livraisonMatieres">
+      <h2 data-cy="livraisonMatieresDetailsHeading"><span>Livraison Matieres</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ livraisonMatieres.id }}</span>
+        </dd>
+        <dt><span>Designation Matiere</span></dt>
+        <dd>
+          <span>{{ livraisonMatieres.designationMatiere }}</span>
+        </dd>
+        <dt><span>Quantite Livree</span></dt>
+        <dd>
+          <span>{{ livraisonMatieres.quantiteLivree }}</span>
+        </dd>
+        <dt><span>Date Livree</span></dt>
+        <dd>
+          <span>{{ livraisonMatieres.dateLivree | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Statut Sup</span></dt>
+        <dd>
+          <span>{{ livraisonMatieres.statutSup }}</span>
+        </dd>
+        <dt><span>Matieres</span></dt>
+        <dd>
+          <span *ngFor="let matieres of livraisonMatieres.matieres; let last = last">
+            <a [routerLink]="['/matieres', matieres?.id, 'view']">{{ matieres.designationMatieres }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span>Structure</span></dt>
+        <dd>
+          <div *ngIf="livraisonMatieres.structure">
+            <a [routerLink]="['/structure', livraisonMatieres.structure?.id, 'view']">{{
+              livraisonMatieres.structure?.libelleStructure
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/livraison-matieres', livraisonMatieres.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

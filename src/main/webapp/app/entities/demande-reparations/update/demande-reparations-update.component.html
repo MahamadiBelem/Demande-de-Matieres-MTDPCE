@@ -1,0 +1,155 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-demande-reparations-heading" data-cy="DemandeReparationsCreateUpdateHeading">Create or edit a Demande Reparations</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('date')!.invalid && (editForm.get('date')!.dirty || editForm.get('date')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('date')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('date')?.errors?.ZonedDateTimelocal">
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_indentiteSoumettant">Indentite Soumettant</label>
+          <input
+            type="text"
+            class="form-control"
+            name="indentiteSoumettant"
+            id="field_indentiteSoumettant"
+            data-cy="indentiteSoumettant"
+            formControlName="indentiteSoumettant"
+          />
+          <div
+            *ngIf="
+              editForm.get('indentiteSoumettant')!.invalid &&
+              (editForm.get('indentiteSoumettant')!.dirty || editForm.get('indentiteSoumettant')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('indentiteSoumettant')?.errors?.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('indentiteSoumettant')?.errors?.minlength">
+              This field is required to be at least 5 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fonction">Fonction</label>
+          <input type="text" class="form-control" name="fonction" id="field_fonction" data-cy="fonction" formControlName="fonction" />
+          <div *ngIf="editForm.get('fonction')!.invalid && (editForm.get('fonction')!.dirty || editForm.get('fonction')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('fonction')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('fonction')?.errors?.minlength">
+              This field is required to be at least 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_designation">Designation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="designation"
+            id="field_designation"
+            data-cy="designation"
+            formControlName="designation"
+          />
+          <div *ngIf="editForm.get('designation')!.invalid && (editForm.get('designation')!.dirty || editForm.get('designation')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('designation')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('designation')?.errors?.minlength">
+              This field is required to be at least 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_observation">Observation</label>
+          <textarea
+            class="form-control"
+            name="observation"
+            id="field_observation"
+            data-cy="observation"
+            formControlName="observation"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_statutSup">Statut Sup</label>
+          <input type="checkbox" class="form-check" name="statutSup" id="field_statutSup" data-cy="statutSup" formControlName="statutSup" />
+        </div>
+
+        <div class="row mb-3">
+          <label for="field_typeMatieres">Type Matiere</label>
+          <select
+            class="form-control"
+            id="field_typeMatieres"
+            data-cy="typeMatiere"
+            multiple
+            name="typeMatieres"
+            formControlName="typeMatieres"
+          >
+            <option
+              [ngValue]="getSelectedTypeMatiere(typeMatiereOption, editForm.get('typeMatieres')!.value)"
+              *ngFor="let typeMatiereOption of typeMatieresSharedCollection; trackBy: trackTypeMatiereById"
+            >
+              {{ typeMatiereOption.libelleTypeMatiere }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_structure">Structure</label>
+          <select class="form-control" id="field_structure" data-cy="structure" name="structure" formControlName="structure">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="structureOption.id === editForm.get('structure')!.value?.id ? editForm.get('structure')!.value : structureOption"
+              *ngFor="let structureOption of structuresSharedCollection; trackBy: trackStructureById"
+            >
+              {{ structureOption.libelleStructure }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<div>
+  <h2 id="page-heading" data-cy="CarnetVehiculeHeading">
+    <span>Carnet Vehicules</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-carnet-vehicule"
+        [routerLink]="['/carnet-vehicule/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Carnet Vehicule </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="carnetVehicules?.length === 0">
+    <span>No carnetVehicules found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="carnetVehicules && carnetVehicules.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Date</span></th>
+          <th scope="col"><span>Immatriculation Vehicule</span></th>
+          <th scope="col"><span>Identite Conducteur</span></th>
+          <th scope="col"><span>Nombre Reparation</span></th>
+          <th scope="col"><span>Date Derniere Revision</span></th>
+          <th scope="col"><span>Etatvehicule</span></th>
+          <th scope="col"><span>Observations</span></th>
+          <th scope="col"><span>Statut Sup</span></th>
+          <th scope="col"><span>Marque Vehicule</span></th>
+          <th scope="col"><span>Structure</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let carnetVehicule of carnetVehicules; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/carnet-vehicule', carnetVehicule.id, 'view']">{{ carnetVehicule.id }}</a>
+          </td>
+          <td>{{ carnetVehicule.date | formatMediumDatetime }}</td>
+          <td>{{ carnetVehicule.immatriculationVehicule }}</td>
+          <td>{{ carnetVehicule.identiteConducteur }}</td>
+          <td>{{ carnetVehicule.nombreReparation }}</td>
+          <td>{{ carnetVehicule.dateDerniereRevision | formatMediumDate }}</td>
+          <td>{{ carnetVehicule.etatvehicule }}</td>
+          <td>{{ carnetVehicule.observations }}</td>
+          <td>{{ carnetVehicule.statutSup }}</td>
+          <td>
+            <div *ngIf="carnetVehicule.marqueVehicule">
+              <a [routerLink]="['/marque-vehicule', carnetVehicule.marqueVehicule?.id, 'view']">{{
+                carnetVehicule.marqueVehicule?.libelleMarqueVehicule
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <span *ngFor="let structure of carnetVehicule.structures; let last = last">
+              <a class="form-control-static" [routerLink]="['/structure', structure.id, 'view']">{{ structure.libelleStructure }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/carnet-vehicule', carnetVehicule.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/carnet-vehicule', carnetVehicule.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(carnetVehicule)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
