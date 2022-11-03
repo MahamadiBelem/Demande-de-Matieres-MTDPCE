@@ -15,6 +15,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DemandeMatieresRepository extends JpaRepository<DemandeMatieres, Long> {
     default Optional<DemandeMatieres> findOneWithEagerRelationships(Long id) {
+        /*@Query
+        select* from demandeMatieres; */
         return this.findOneWithToOneRelationships(id);
     }
 

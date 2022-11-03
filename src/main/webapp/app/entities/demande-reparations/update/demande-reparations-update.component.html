@@ -1,5 +1,5 @@
-<div class="d-flex justify-content-center">
-  <div class="col-8">
+<div style="border-radius: 4px" class="d-flex justify-content-center">
+  <div class="col-6">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-demande-reparations-heading" data-cy="DemandeReparationsCreateUpdateHeading">Create or edit a Demande Reparations</h2>
 
@@ -10,6 +10,11 @@
           <label class="form-label" for="field_id">ID</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
+
+        <button class="btn btn-outline-info" (click)="savemodale()">
+          <fa-icon icon="sync"></fa-icon>
+          <span>Ajouter</span>
+        </button>
 
         <div class="row mb-3">
           <label class="form-label" for="field_date">Date</label>

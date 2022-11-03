@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 
 import { IMarqueVehicule, MarqueVehicule } from '../marque-vehicule.model';
 import { MarqueVehiculeService } from '../service/marque-vehicule.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-marque-vehicule-update',
@@ -23,7 +24,8 @@ export class MarqueVehiculeUpdateComponent implements OnInit {
   constructor(
     protected marqueVehiculeService: MarqueVehiculeService,
     protected activatedRoute: ActivatedRoute,
-    protected fb: FormBuilder
+    protected fb: FormBuilder,
+    protected activemodale: NgbActiveModal
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +46,11 @@ export class MarqueVehiculeUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.marqueVehiculeService.create(marqueVehicule));
     }
+  }
+
+  // test
+  cancel(): void {
+    this.activemodale.dismiss();
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IMarqueVehicule>>): void {

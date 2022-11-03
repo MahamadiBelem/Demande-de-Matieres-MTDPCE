@@ -3,19 +3,14 @@
     <span>Matieres</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+      <button class="btn btn-outline-info me-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh List</span>
+        <span>Refraichir</span>
       </button>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-matieres"
-        [routerLink]="['/matieres/new']"
-      >
+      <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-outline-primary" (click)="savemodale()">
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Matieres </span>
+        <span> Nouveau </span>
       </button>
     </div>
   </h2>
@@ -29,10 +24,10 @@
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="matieres && matieres.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
+    <table class="table table-bordered" aria-describedby="page-heading">
       <thead>
         <tr>
-          <th scope="col"><span>ID</span></th>
+          <!--th scope="col"><span>ID</span></th-->
           <th scope="col"><span>Designation Matieres</span></th>
           <th scope="col"><span>Quantite Matieres</span></th>
           <th scope="col"><span>Caracteristiques Matieres</span></th>
@@ -42,9 +37,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let matieres of matieres; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <!--td>
             <a [routerLink]="['/matieres', matieres.id, 'view']">{{ matieres.id }}</a>
-          </td>
+          </td-->
           <td>{{ matieres.designationMatieres }}</td>
           <td>{{ matieres.quantiteMatieres }}</td>
           <td>{{ matieres.caracteristiquesMatieres }}</td>
@@ -54,26 +49,26 @@
               <button
                 type="submit"
                 [routerLink]="['/matieres', matieres.id, 'view']"
-                class="btn btn-info btn-sm"
+                class="btn btn-outline-info btn-sm"
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
                 type="submit"
                 [routerLink]="['/matieres', matieres.id, 'edit']"
-                class="btn btn-primary btn-sm"
+                class="btn btn-outline-primary"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(matieres)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button type="submit" (click)="delete(matieres)" class="btn btn-outline-danger" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>

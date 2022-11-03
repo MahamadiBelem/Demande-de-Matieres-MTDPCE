@@ -3,25 +3,25 @@
     <span>Structures</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+      <button class="btn btn-outline-success" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Actualiser</span>
       </button>
 
-      <button class="btn btn-info me-2" (click)="savemodale()">
+      <button class="btn btn-outline-info" (click)="savemodale()">
         <fa-icon icon="sync"></fa-icon>
         <span>Ajouter</span>
       </button>
 
-      <button
+      <!--button
         id="jh-create-entity"
         data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-structure"
+        class="btn btn-outline-primary jh-create-entity create-structure"
         [routerLink]="['/structure/new']"
       >
         <fa-icon icon="plus"></fa-icon>
         <span> Nouveau </span>
-      </button>
+      </button-->
     </div>
   </h2>
 
@@ -34,10 +34,10 @@
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="structures && structures.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
+    <table class="table table-bordered" aria-describedby="page-heading">
       <thead>
         <tr>
-          <th scope="col"><span>ID</span></th>
+          <!--th scope="col"><span>ID</span></th-->
           <th scope="col"><span>Libelle Structure</span></th>
           <th scope="col"><span>Code Structure</span></th>
           <th scope="col"></th>
@@ -45,9 +45,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let structure of structures; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <!--td>
             <a [routerLink]="['/structure', structure.id, 'view']">{{ structure.id }}</a>
-          </td>
+          </td-->
           <td>{{ structure.libelleStructure }}</td>
           <td>{{ structure.codeStructure }}</td>
           <td class="text-end">
@@ -55,26 +55,26 @@
               <button
                 type="submit"
                 [routerLink]="['/structure', structure.id, 'view']"
-                class="btn btn-info btn-sm"
+                class="btn btn-outline-info"
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
                 type="submit"
                 [routerLink]="['/structure', structure.id, 'edit']"
-                class="btn btn-primary btn-sm"
+                class="btn btn-outline-info"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(structure)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button type="submit" (click)="delete(structure)" class="btn btn-outline-danger" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>

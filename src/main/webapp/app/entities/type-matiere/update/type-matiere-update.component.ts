@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 
 import { ITypeMatiere, TypeMatiere } from '../type-matiere.model';
 import { TypeMatiereService } from '../service/type-matiere.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-type-matiere-update',
@@ -20,7 +21,12 @@ export class TypeMatiereUpdateComponent implements OnInit {
     libelleTypeMatiere: [null, [Validators.required, Validators.minLength(3)]],
   });
 
-  constructor(protected typeMatiereService: TypeMatiereService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
+  constructor(
+    protected typeMatiereService: TypeMatiereService,
+    protected activatedRoute: ActivatedRoute,
+    protected fb: FormBuilder,
+    protected activemodale: NgbActiveModal
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ typeMatiere }) => {
@@ -42,6 +48,9 @@ export class TypeMatiereUpdateComponent implements OnInit {
     }
   }
 
+  cancel(): void {
+    this.activemodale.dismiss();
+  }
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITypeMatiere>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),

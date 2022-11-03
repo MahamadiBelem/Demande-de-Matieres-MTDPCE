@@ -72,7 +72,11 @@
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
         </button-->
 
-        <button
+        <button [disabled]="editForm.invalid || isSaving" class="btn btn-primary" (click)="save()">
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauver</span>
+        </button>
+
+        <!--button
           type="submit"
           id="save-entity"
           data-cy="entityCreateSaveButton"
@@ -80,7 +84,7 @@
           class="btn btn-primary"
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
-        </button>
+        </button-->
       </div>
     </form>
   </div>

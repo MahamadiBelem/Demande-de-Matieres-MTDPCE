@@ -3,20 +3,24 @@
     <span>Type Matieres</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+      <button class="btn btn-outline-info" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh List</span>
+        <span>Rafraichir</span>
+      </button>
+      <button class="btn btn-outline-primary" (click)="savemodale()" [disabled]="isLoading">
+        <fa-icon icon="plus" [spin]="isLoading"></fa-icon>
+        <span> Nouveau</span>
       </button>
 
-      <button
+      <!--button
         id="jh-create-entity"
         data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-type-matiere"
-        [routerLink]="['/type-matiere/new']"
+        class="btn btn-outline-primary jh-create-entity create-type-matiere"
+        [routerLink]="['/type-matiere/new']" 
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Type Matiere </span>
-      </button>
+        <span> Nouveau </span>
+      </button-->
     </div>
   </h2>
 
@@ -29,45 +33,45 @@
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="typeMatieres && typeMatieres.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
+    <table class="table table-bordered" aria-describedby="page-heading">
       <thead>
         <tr>
-          <th scope="col"><span>ID</span></th>
+          <!--th scope="col"><span>ID</span></th-->
           <th scope="col"><span>Libelle Type Matiere</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let typeMatiere of typeMatieres; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <!--td>
             <a [routerLink]="['/type-matiere', typeMatiere.id, 'view']">{{ typeMatiere.id }}</a>
-          </td>
+          </td-->
           <td>{{ typeMatiere.libelleTypeMatiere }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button
                 type="submit"
                 [routerLink]="['/type-matiere', typeMatiere.id, 'view']"
-                class="btn btn-info btn-sm"
+                class="btn btn-outline-info"
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
                 type="submit"
                 [routerLink]="['/type-matiere', typeMatiere.id, 'edit']"
-                class="btn btn-primary btn-sm"
+                class="btn btn-outline-primary"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(typeMatiere)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button type="submit" (click)="delete(typeMatiere)" class="btn btn-outline-danger" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>

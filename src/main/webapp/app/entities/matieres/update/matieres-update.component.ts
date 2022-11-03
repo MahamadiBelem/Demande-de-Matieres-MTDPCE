@@ -10,6 +10,7 @@ import { MatieresService } from '../service/matieres.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-matieres-update',
@@ -31,7 +32,8 @@ export class MatieresUpdateComponent implements OnInit {
     protected eventManager: EventManager,
     protected matieresService: MatieresService,
     protected activatedRoute: ActivatedRoute,
-    protected fb: FormBuilder
+    protected fb: FormBuilder,
+    private activemodale: NgbActiveModal
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +71,9 @@ export class MatieresUpdateComponent implements OnInit {
     }
   }
 
+  cancel(): void {
+    this.activemodale.dismiss();
+  }
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IMatieres>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),

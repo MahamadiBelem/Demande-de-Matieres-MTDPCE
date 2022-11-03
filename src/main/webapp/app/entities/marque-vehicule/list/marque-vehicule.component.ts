@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IMarqueVehicule } from '../marque-vehicule.model';
 import { MarqueVehiculeService } from '../service/marque-vehicule.service';
 import { MarqueVehiculeDeleteDialogComponent } from '../delete/marque-vehicule-delete-dialog.component';
+import { MarqueVehiculeUpdateComponent } from '../update/marque-vehicule-update.component';
 
 @Component({
   selector: 'jhi-marque-vehicule',
@@ -32,6 +33,11 @@ export class MarqueVehiculeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAll();
+  }
+
+  //
+  savemodale(): void {
+    const savemodal = this.modalService.open(MarqueVehiculeUpdateComponent, { size: 'lg', backdrop: 'static' });
   }
 
   trackId(_index: number, item: IMarqueVehicule): number {

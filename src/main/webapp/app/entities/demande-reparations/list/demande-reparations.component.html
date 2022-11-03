@@ -3,19 +3,19 @@
     <span>Demande Reparations</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+      <button class="btn btn-outline-info" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh List</span>
+        <span>Refraichir</span>
       </button>
 
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-demande-reparations"
+        class="btn btn-outline-primary jh-create-entity create-demande-reparations"
         [routerLink]="['/demande-reparations/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Demande Reparations </span>
+        <span> Nouveau </span>
       </button>
     </div>
   </h2>
@@ -29,10 +29,10 @@
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="demandeReparations && demandeReparations.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
+    <table class="table table-bordered" aria-describedby="page-heading">
       <thead>
         <tr>
-          <th scope="col"><span>ID</span></th>
+          <!--th scope="col"><span>ID</span></th-->
           <th scope="col"><span>Date</span></th>
           <th scope="col"><span>Indentite Soumettant</span></th>
           <th scope="col"><span>Fonction</span></th>
@@ -46,9 +46,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let demandeReparations of demandeReparations; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <!--td>
             <a [routerLink]="['/demande-reparations', demandeReparations.id, 'view']">{{ demandeReparations.id }}</a>
-          </td>
+          </td-->
           <td>{{ demandeReparations.date | formatMediumDatetime }}</td>
           <td>{{ demandeReparations.indentiteSoumettant }}</td>
           <td>{{ demandeReparations.fonction }}</td>
@@ -75,24 +75,24 @@
               <button
                 type="submit"
                 [routerLink]="['/demande-reparations', demandeReparations.id, 'view']"
-                class="btn btn-info btn-sm"
+                class="btn btn-outline-info"
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
                 type="submit"
                 [routerLink]="['/demande-reparations', demandeReparations.id, 'edit']"
-                class="btn btn-primary btn-sm"
+                class="btn btn-outline-primary"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(demandeReparations)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button type="submit" (click)="delete(demandeReparations)" class="btn btn-outline-danger" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">Delete</span>
               </button>

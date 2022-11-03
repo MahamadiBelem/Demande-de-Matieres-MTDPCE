@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ITypeMatiere } from '../type-matiere.model';
 import { TypeMatiereService } from '../service/type-matiere.service';
 import { TypeMatiereDeleteDialogComponent } from '../delete/type-matiere-delete-dialog.component';
+import { TypeMatiereUpdateComponent } from '../update/type-matiere-update.component';
 
 @Component({
   selector: 'jhi-type-matiere',
@@ -32,6 +33,10 @@ export class TypeMatiereComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAll();
+  }
+
+  savemodale(): void {
+    const savemodal = this.modalService.open(TypeMatiereUpdateComponent, { size: 'lg', backdrop: 'static' });
   }
 
   trackId(_index: number, item: ITypeMatiere): number {

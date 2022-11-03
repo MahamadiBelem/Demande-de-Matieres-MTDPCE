@@ -6,6 +6,7 @@ import { IMatieres } from '../matieres.model';
 import { MatieresService } from '../service/matieres.service';
 import { MatieresDeleteDialogComponent } from '../delete/matieres-delete-dialog.component';
 import { DataUtils } from 'app/core/util/data-util.service';
+import { MatieresUpdateComponent } from '../update/matieres-update.component';
 
 @Component({
   selector: 'jhi-matieres',
@@ -33,6 +34,10 @@ export class MatieresComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAll();
+  }
+
+  savemodale(): void {
+    const savemodal = this.modalService.open(MatieresUpdateComponent, { size: 'lg', backdrop: 'static' });
   }
 
   trackId(_index: number, item: IMatieres): number {
