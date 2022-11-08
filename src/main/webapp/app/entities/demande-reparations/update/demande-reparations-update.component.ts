@@ -18,6 +18,10 @@ import { TypeMatiereService } from 'app/entities/type-matiere/service/type-matie
 import { IStructure } from 'app/entities/structure/structure.model';
 import { StructureService } from 'app/entities/structure/service/structure.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StructureComponent } from 'app/entities/structure/list/structure.component';
+import { StructureUpdateComponent } from 'app/entities/structure/update/structure-update.component';
+import { MatieresUpdateComponent } from 'app/entities/matieres/update/matieres-update.component';
+//import { SaveReparationsComponent } from '../save-reparations/save-reparations.component';
 
 @Component({
   selector: 'jhi-demande-reparations-update',
@@ -114,7 +118,7 @@ export class DemandeReparationsUpdateComponent implements OnInit {
   }
 
   savemodale(): void {
-    const savemodal = this.modalService.open(DemandeReparationsUpdateComponent, { size: 'lg', backdrop: 'static' });
+    const savemodal = this.modalService.open(MatieresUpdateComponent, { size: 'lg', backdrop: 'static' });
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IDemandeReparations>>): void {

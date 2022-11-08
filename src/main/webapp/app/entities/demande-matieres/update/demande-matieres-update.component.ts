@@ -15,7 +15,7 @@ import { EventManager, EventWithContent } from 'app/core/util/event-manager.serv
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
 import { IStructure } from 'app/entities/structure/structure.model';
 import { StructureService } from 'app/entities/structure/service/structure.service';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-demande-matieres-update',
@@ -43,12 +43,12 @@ export class DemandeMatieresUpdateComponent implements OnInit {
     protected eventManager: EventManager,
     protected demandeMatieresService: DemandeMatieresService,
     protected structureService: StructureService,
-    private activemodale: NgbActiveModal,
+    //private activemodale: NgbActiveModal,
     protected activatedRoute: ActivatedRoute,
-    protected fb: FormBuilder,
-    //test
-    protected modalService: NgbModal
-  ) {}
+    protected fb: FormBuilder
+  ) //test
+  // protected modalService: NgbModal
+  {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ demandeMatieres }) => {
@@ -95,9 +95,9 @@ export class DemandeMatieresUpdateComponent implements OnInit {
   trackStructureById(_index: number, item: IStructure): number {
     return item.id!;
   }
-  cancel(): void {
-    this.activemodale.dismiss();
-  }
+  //cancel(): void {
+  //this.activemodale.dismiss();
+  //}
   // savemodale(): void {
   // const savemodal = this.modalService.open(DemandeMatieresUpdateComponent, { size: 'lg', backdrop: 'static' });
   //}

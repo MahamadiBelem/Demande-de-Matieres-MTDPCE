@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="MarqueVehiculeHeading">
-    <span>Marque Vehicules</span>
+    <span style="text-decoration: underline">Marque Vehicules</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-outline-primary" (click)="loadAll()" [disabled]="isLoading">
@@ -8,7 +8,7 @@
         <span>Actualiser</span>
       </button>
       <button class="btn btn-outline-info" (click)="savemodale()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <fa-icon icon="plus" [spin]="isLoading"></fa-icon>
         <span>Nouveau</span>
       </button>
       <!--button
@@ -36,7 +36,7 @@
       <thead>
         <tr>
           <!--th scope="col"><span>ID</span></th-->
-          <th scope="col"><span>Libelle Marque Vehicule</span></th>
+          <th scope="col"><span> Marque </span></th>
           <th scope="col"></th>
         </tr>
       </thead>

@@ -5,6 +5,7 @@ import { DemandeReparationsDetailComponent } from './detail/demande-reparations-
 import { DemandeReparationsUpdateComponent } from './update/demande-reparations-update.component';
 import { DemandeReparationsDeleteDialogComponent } from './delete/demande-reparations-delete-dialog.component';
 import { DemandeReparationsRoutingModule } from './route/demande-reparations-routing.module';
+//import { SaveReparationsComponent } from './save-reparations/save-reparations.component';
 
 @NgModule({
   imports: [SharedModule, DemandeReparationsRoutingModule],
@@ -13,6 +14,7 @@ import { DemandeReparationsRoutingModule } from './route/demande-reparations-rou
     DemandeReparationsDetailComponent,
     DemandeReparationsUpdateComponent,
     DemandeReparationsDeleteDialogComponent,
+    //SaveReparationsComponent,
   ],
   entryComponents: [DemandeReparationsDeleteDialogComponent],
 })

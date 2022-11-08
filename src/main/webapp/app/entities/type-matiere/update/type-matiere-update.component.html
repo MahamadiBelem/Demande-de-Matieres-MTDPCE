@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-type-matiere-heading" data-cy="TypeMatiereCreateUpdateHeading">Create or edit a Type Matiere</h2>
+      <h2 id="jhi-type-matiere-heading" data-cy="TypeMatiereCreateUpdateHeading">Typologie Matieres</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -12,7 +12,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_libelleTypeMatiere">Libelle Type Matiere</label>
+          <label class="form-label" for="field_libelleTypeMatiere"> Type Matiere</label>
           <input
             type="text"
             class="form-control"
@@ -53,5 +53,6 @@
         </button>
       </div>
     </form>
+    <br />
   </div>
 </div>

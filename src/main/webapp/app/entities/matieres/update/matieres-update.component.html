@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-matieres-heading" data-cy="MatieresCreateUpdateHeading">Create or edit a Matieres</h2>
+      <h2 id="jhi-matieres-heading" data-cy="MatieresCreateUpdateHeading">Matieres</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -12,7 +12,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_designationMatieres">Designation Matieres</label>
+          <label class="form-label" for="field_designationMatieres">Designation</label>
           <input
             type="text"
             class="form-control"
@@ -37,7 +37,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_quantiteMatieres">Quantite Matieres</label>
+          <label class="form-label" for="field_quantiteMatieres">Quantite </label>
           <input
             type="number"
             class="form-control"
@@ -62,7 +62,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_caracteristiquesMatieres">Caracteristiques Matieres</label>
+          <label class="form-label" for="field_caracteristiquesMatieres">Caracteristiques </label>
           <textarea
             class="form-control"
             name="caracteristiquesMatieres"
@@ -72,10 +72,10 @@
           ></textarea>
         </div>
 
-        <div class="row mb-3">
+        <!--div class="row mb-3">
           <label class="form-label" for="field_statutSup">Statut Sup</label>
           <input type="checkbox" class="form-check" name="statutSup" id="field_statutSup" data-cy="statutSup" formControlName="statutSup" />
-        </div>
+        </div-->
       </div>
 
       <div>
@@ -92,7 +92,18 @@
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
         </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Ajouter</span>
+        </button>
       </div>
     </form>
+    <br />
   </div>
 </div>

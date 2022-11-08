@@ -40,7 +40,7 @@ export class StructureComponent implements OnInit {
   }
 
   delete(structure: IStructure): void {
-    const modalRef = this.modalService.open(StructureDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(StructureDeleteDialogComponent, { size: 'md', backdrop: 'static' });
     modalRef.componentInstance.structure = structure;
     // unsubscribe not needed because closed completes on modal close
     modalRef.closed.subscribe(reason => {

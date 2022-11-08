@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="MatieresHeading">
-    <span>Matieres</span>
+    <span style="text-decoration: underline">Matieres</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-outline-info me-2" (click)="loadAll()" [disabled]="isLoading">
@@ -28,10 +28,10 @@
       <thead>
         <tr>
           <!--th scope="col"><span>ID</span></th-->
-          <th scope="col"><span>Designation Matieres</span></th>
-          <th scope="col"><span>Quantite Matieres</span></th>
-          <th scope="col"><span>Caracteristiques Matieres</span></th>
-          <th scope="col"><span>Statut Sup</span></th>
+          <th scope="col"><span>Designation </span></th>
+          <th scope="col"><span>Quantite </span></th>
+          <!--th scope="col"><span>Caracteristiques </span></th>
+          <th scope="col"><span>Statut Sup</span></th-->
           <th scope="col"></th>
         </tr>
       </thead>
@@ -42,8 +42,8 @@
           </td-->
           <td>{{ matieres.designationMatieres }}</td>
           <td>{{ matieres.quantiteMatieres }}</td>
-          <td>{{ matieres.caracteristiquesMatieres }}</td>
-          <td>{{ matieres.statutSup }}</td>
+          <!--td>{{ matieres.caracteristiquesMatieres }}</td>
+          <td>{{ matieres.statutSup }}</td-->
           <td class="text-end">
             <div class="btn-group">
               <button

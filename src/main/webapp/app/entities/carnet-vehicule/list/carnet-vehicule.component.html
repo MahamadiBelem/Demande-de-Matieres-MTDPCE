@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="CarnetVehiculeHeading">
-    <span>Carnet Vehicules</span>
+    <span style="text-decoration: underline">Carnet Vehicules</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-outline-info" (click)="loadAll()" [disabled]="isLoading">
@@ -34,15 +34,15 @@
         <tr>
           <!--th scope="col"><span>ID</span></th-->
           <th scope="col"><span>Date</span></th>
-          <th scope="col"><span>Immatriculation Vehicule</span></th>
-          <th scope="col"><span>Identite Conducteur</span></th>
-          <th scope="col"><span>Nombre Reparation</span></th>
+          <th scope="col"><span>Immatriculation</span></th>
+          <th scope="col"><span>Identite</span></th>
+          <!--th scope="col"><span>Nombre Reparation</span></th>
           <th scope="col"><span>Date Derniere Revision</span></th>
-          <th scope="col"><span>Etatvehicule</span></th>
-          <th scope="col"><span>Observations</span></th>
-          <th scope="col"><span>Statut Sup</span></th>
-          <th scope="col"><span>Marque Vehicule</span></th>
-          <th scope="col"><span>Structure</span></th>
+          <th scope="col"><span>Etatvehicule</span></th-->
+          <!--th scope="col"><span>Observations</span></th-->
+          <!--th scope="col"><span>Statut Sup</span></th-->
+          <!--th scope="col"><span>Marque Vehicule</span></th>
+          <th scope="col"><span>Structure</span></th-->
           <th scope="col"></th>
         </tr>
       </thead>
@@ -54,24 +54,24 @@
           <td>{{ carnetVehicule.date | formatMediumDatetime }}</td>
           <td>{{ carnetVehicule.immatriculationVehicule }}</td>
           <td>{{ carnetVehicule.identiteConducteur }}</td>
-          <td>{{ carnetVehicule.nombreReparation }}</td>
+          <!--td>{{ carnetVehicule.nombreReparation }}</td>
           <td>{{ carnetVehicule.dateDerniereRevision | formatMediumDate }}</td>
-          <td>{{ carnetVehicule.etatvehicule }}</td>
-          <td>{{ carnetVehicule.observations }}</td>
-          <td>{{ carnetVehicule.statutSup }}</td>
-          <td>
+          <td>{{ carnetVehicule.etatvehicule }}</td-->
+          <!--td>{{ carnetVehicule.observations }}</td-->
+          <!--td>{{ carnetVehicule.statutSup }}</td-->
+          <!--td>
             <div *ngIf="carnetVehicule.marqueVehicule">
               <a [routerLink]="['/marque-vehicule', carnetVehicule.marqueVehicule?.id, 'view']">{{
                 carnetVehicule.marqueVehicule?.libelleMarqueVehicule
               }}</a>
             </div>
-          </td>
-          <td>
+          </td-->
+          <!--td>
             <span *ngFor="let structure of carnetVehicule.structures; let last = last">
               <a class="form-control-static" [routerLink]="['/structure', structure.id, 'view']">{{ structure.libelleStructure }}</a
               >{{ last ? '' : ', ' }}
             </span>
-          </td>
+          </td-->
           <td class="text-end">
             <div class="btn-group">
               <button

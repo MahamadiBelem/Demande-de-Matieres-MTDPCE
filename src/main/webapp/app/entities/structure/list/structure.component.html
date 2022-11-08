@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="StructureHeading">
-    <span>Structures</span>
+    <span style="text-decoration: underline">Structures</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-outline-success" (click)="loadAll()" [disabled]="isLoading">
@@ -9,13 +9,13 @@
       </button>
 
       <button class="btn btn-outline-info" (click)="savemodale()">
-        <fa-icon icon="sync"></fa-icon>
+        <fa-icon icon="plus"></fa-icon>
         <span>Ajouter</span>
       </button>
 
       <!--button
         id="jh-create-entity"
-        data-cy="entityCreateButton"
+        data-cy="entityCreateButton" data-cy="entityCreateButton"
         class="btn btn-outline-primary jh-create-entity create-structure"
         [routerLink]="['/structure/new']"
       >
@@ -25,7 +25,7 @@
     </div>
   </h2>
 
-  <jhi-alert-error></jhi-alert-error>
+  <!--jhi-alert-error></jhi-alert-error-->
 
   <jhi-alert></jhi-alert>
 
@@ -38,8 +38,8 @@
       <thead>
         <tr>
           <!--th scope="col"><span>ID</span></th-->
-          <th scope="col"><span>Libelle Structure</span></th>
-          <th scope="col"><span>Code Structure</span></th>
+          <th scope="col"><span>Code </span></th>
+          <th scope="col"><span>Libelle </span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -48,8 +48,9 @@
           <!--td>
             <a [routerLink]="['/structure', structure.id, 'view']">{{ structure.id }}</a>
           </td-->
-          <td>{{ structure.libelleStructure }}</td>
           <td>{{ structure.codeStructure }}</td>
+          <td>{{ structure.libelleStructure }}</td>
+
           <td class="text-end">
             <div class="btn-group">
               <button

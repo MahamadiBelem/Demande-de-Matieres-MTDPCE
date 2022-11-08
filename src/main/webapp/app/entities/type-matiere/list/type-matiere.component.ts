@@ -36,7 +36,7 @@ export class TypeMatiereComponent implements OnInit {
   }
 
   savemodale(): void {
-    const savemodal = this.modalService.open(TypeMatiereUpdateComponent, { size: 'lg', backdrop: 'static' });
+    const savemodal = this.modalService.open(TypeMatiereUpdateComponent, { size: 'md', backdrop: 'static' });
   }
 
   trackId(_index: number, item: ITypeMatiere): number {
@@ -44,7 +44,7 @@ export class TypeMatiereComponent implements OnInit {
   }
 
   delete(typeMatiere: ITypeMatiere): void {
-    const modalRef = this.modalService.open(TypeMatiereDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(TypeMatiereDeleteDialogComponent, { size: 'md', backdrop: 'static' });
     modalRef.componentInstance.typeMatiere = typeMatiere;
     // unsubscribe not needed because closed completes on modal close
     modalRef.closed.subscribe(reason => {

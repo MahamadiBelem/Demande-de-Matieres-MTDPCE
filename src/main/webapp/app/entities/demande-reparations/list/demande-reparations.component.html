@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="DemandeReparationsHeading">
-    <span>Demande Reparations</span>
+    <span style="text-decoration: underline">Recaputilatif Demande Reparations</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-outline-info" (click)="loadAll()" [disabled]="isLoading">
@@ -34,11 +34,11 @@
         <tr>
           <!--th scope="col"><span>ID</span></th-->
           <th scope="col"><span>Date</span></th>
-          <th scope="col"><span>Indentite Soumettant</span></th>
-          <th scope="col"><span>Fonction</span></th>
+          <!--th scope="col"><span>Indentite Soumettant</span></th-->
+          <!--th scope="col"><span>Fonction</span></th-->
           <th scope="col"><span>Designation</span></th>
-          <th scope="col"><span>Observation</span></th>
-          <th scope="col"><span>Statut Sup</span></th>
+          <!--th scope="col"><span>Observation</span></th>
+          <th scope="col"><span>Statut Sup</span></th-->
           <th scope="col"><span>Type Matiere</span></th>
           <th scope="col"><span>Structure</span></th>
           <th scope="col"></th>
@@ -50,11 +50,11 @@
             <a [routerLink]="['/demande-reparations', demandeReparations.id, 'view']">{{ demandeReparations.id }}</a>
           </td-->
           <td>{{ demandeReparations.date | formatMediumDatetime }}</td>
-          <td>{{ demandeReparations.indentiteSoumettant }}</td>
-          <td>{{ demandeReparations.fonction }}</td>
+          <!--td>{{ demandeReparations.indentiteSoumettant }}</td>
+          <td>{{ demandeReparations.fonction }}</td-->
           <td>{{ demandeReparations.designation }}</td>
-          <td>{{ demandeReparations.observation }}</td>
-          <td>{{ demandeReparations.statutSup }}</td>
+          <!--td>{{ demandeReparations.observation }}</td>
+          <td>{{ demandeReparations.statutSup }}</td-->
           <td>
             <span *ngFor="let typeMatiere of demandeReparations.typeMatieres; let last = last">
               <a class="form-control-static" [routerLink]="['/type-matiere', typeMatiere.id, 'view']">{{
@@ -94,7 +94,7 @@
 
               <button type="submit" (click)="delete(demandeReparations)" class="btn btn-outline-danger" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>

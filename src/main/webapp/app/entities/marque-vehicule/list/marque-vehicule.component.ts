@@ -37,7 +37,7 @@ export class MarqueVehiculeComponent implements OnInit {
 
   //
   savemodale(): void {
-    const savemodal = this.modalService.open(MarqueVehiculeUpdateComponent, { size: 'lg', backdrop: 'static' });
+    const savemodal = this.modalService.open(MarqueVehiculeUpdateComponent, { size: 'md', backdrop: 'static' });
   }
 
   trackId(_index: number, item: IMarqueVehicule): number {
@@ -45,7 +45,7 @@ export class MarqueVehiculeComponent implements OnInit {
   }
 
   delete(marqueVehicule: IMarqueVehicule): void {
-    const modalRef = this.modalService.open(MarqueVehiculeDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(MarqueVehiculeDeleteDialogComponent, { size: 'md', backdrop: 'static' });
     modalRef.componentInstance.marqueVehicule = marqueVehicule;
     // unsubscribe not needed because closed completes on modal close
     modalRef.closed.subscribe(reason => {

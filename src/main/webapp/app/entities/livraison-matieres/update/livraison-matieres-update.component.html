@@ -1,18 +1,19 @@
-<div class="d-flex justify-content-center">
-  <div class="col-6">
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-livraison-matieres-heading" data-cy="LivraisonMatieresCreateUpdateHeading">Create or edit a Livraison Matieres</h2>
+<div style="box-shadow: 3px 3px 3px 3px; border-radius: 25px">
+  <div class="d-flex justify-content-center">
+    <div class="col-6">
+      <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+        <h2 id="jhi-livraison-matieres-heading" data-cy="LivraisonMatieresCreateUpdateHeading">Livraison Matieres</h2>
 
-      <div>
-        <jhi-alert-error></jhi-alert-error>
+        <div>
+          <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
-          <label class="form-label" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
+          <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_designationMatiere">Designation Matiere</label>
+          <!--div class="form-group">
+          <label class="form-label" for="field_designationMatiere">Designation </label>
           <input
             type="text"
             class="form-control"
@@ -34,10 +35,10 @@
               This field is required to be at least 3 characters.
             </small>
           </div>
-        </div>
+        </div-->
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_quantiteLivree">Quantite Livree</label>
+          <!--div class="form-group">
+          <label class="form-label" for="field_quantiteLivree">Quantite </label>
           <input
             type="number"
             class="form-control"
@@ -56,24 +57,24 @@
               This field should be a number.
             </small>
           </div>
-        </div>
+        </div-->
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_dateLivree">Date Livree</label>
-          <div class="d-flex">
-            <input
-              id="field_dateLivree"
-              data-cy="dateLivree"
-              type="datetime-local"
-              class="form-control"
-              name="dateLivree"
-              formControlName="dateLivree"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
+          <div class="form-group">
+            <label class="form-label" for="field_dateLivree">Date </label>
+            <div class="d-flex">
+              <input
+                id="field_dateLivree"
+                data-cy="dateLivree"
+                type="datetime-local"
+                class="form-control"
+                name="dateLivree"
+                formControlName="dateLivree"
+                placeholder="YYYY-MM-DD HH:mm"
+              />
+            </div>
           </div>
-        </div>
 
-        <div class="row mb-3">
+          <!--div class="row mb-3">
           <label class="form-label" for="field_statutSup">Statut Sup</label>
           <input type="checkbox" class="form-check" name="statutSup" id="field_statutSup" data-cy="statutSup" formControlName="statutSup" />
         </div>
@@ -88,37 +89,66 @@
               {{ matieresOption.designationMatieres }}
             </option>
           </select>
+        </div-->
+
+          <div class="form-group">
+            <label class="form-label" for="field_structure">Structure</label>
+            <select class="form-control" id="field_structure" data-cy="structure" name="structure" formControlName="structure">
+              <option [ngValue]="null"></option>
+              <option
+                [ngValue]="structureOption.id === editForm.get('structure')!.value?.id ? editForm.get('structure')!.value : structureOption"
+                *ngFor="let structureOption of structuresSharedCollection; trackBy: trackStructureById"
+              >
+                {{ structureOption.libelleStructure }}
+              </option>
+            </select>
+          </div>
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_structure">Structure</label>
-          <select class="form-control" id="field_structure" data-cy="structure" name="structure" formControlName="structure">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="structureOption.id === editForm.get('structure')!.value?.id ? editForm.get('structure')!.value : structureOption"
-              *ngFor="let structureOption of structuresSharedCollection; trackBy: trackStructureById"
-            >
-              {{ structureOption.libelleStructure }}
-            </option>
-          </select>
+        <br />
+
+        <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-outline-primary jh-create-entity create-carnet-vehicule">
+          <fa-icon icon="plus"></fa-icon>
+          <span> Nouveau</span>
+        </button>
+        <br /><br />
+
+        <table class="table table-bordered">
+          <thead>
+            <tr class="table-primary">
+              <th scope="col">Designation</th>
+              <th scope="col">Quantite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-info">
+              <td>Ordinateur</td>
+              <td>10</td>
+            </tr>
+            <tr class="table-success">
+              <td>Vehicule de fonction</td>
+              <td>01</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div>
+          <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+            <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+          </button>
+
+          <button
+            type="submit"
+            id="save-entity"
+            data-cy="entityCreateSaveButton"
+            [disabled]="editForm.invalid || isSaving"
+            class="btn btn-primary"
+          >
+            <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+          </button>
         </div>
-      </div>
-
-      <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
-        </button>
-
-        <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-        >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
-        </button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
+  <br /><br />
 </div>

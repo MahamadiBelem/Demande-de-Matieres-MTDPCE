@@ -64,7 +64,7 @@
 
 <div>
   <h2 id="page-heading" data-cy="DemandeMatieresHeading">
-    <span>Demande Matieres</span>
+    <span style="text-decoration: underline">Recaputilatif Demande Matieres</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-outline-info" (click)="loadAll()" [disabled]="isLoading">
@@ -74,13 +74,28 @@
 
       <!--button class="btn btn-outline-info" (click)="savemodale()">
         <fa-icon icon="plus"></fa-icon>
-        <span>Nouveau Matieres</span>
+        <span>Nouveau Matieres</span> (click)="savemodale()"
       </button-->
 
-      <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-outline-primary" (click)="savemodale()">
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-outline-primary jh-create-entity create-demande-matieres"
+        [routerLink]="['/demande-matieres/new']"
+      >
         <fa-icon icon="plus"></fa-icon>
         <span> Nouveau</span>
       </button>
+
+      <!--button
+      id="jh-create-entity"
+      data-cy="entityCreateButton"
+      class="btn btn-outline-primary jh-create-entity create-demande-reparations"
+      [routerLink]="['/demande-reparations/new']"
+    >
+      <fa-icon icon="plus"></fa-icon>
+      <span> Nouveau2 </span>
+    </button-->
     </div>
   </h2>
 
@@ -98,12 +113,12 @@
         <tr>
           <!--th scope="col"><span>ID</span></th-->
           <th scope="col"><span>Date</span></th>
-          <th scope="col"><span>Indentite Soumettant</span></th>
+          <!--th scope="col"><span>Indentite Soumettant</span></th-->
           <th scope="col"><span>Fonction</span></th>
           <th scope="col"><span>Designation</span></th>
           <th scope="col"><span>Quantite</span></th>
-          <th scope="col"><span>Observation</span></th>
-          <th scope="col"><span>Statut Sup</span></th>
+          <!--th scope="col"><span>Observation</span></th>
+          <th scope="col"><span>Statut Sup</span></th-->
           <th scope="col"><span>Structure</span></th>
           <th scope="col"></th>
         </tr>
@@ -114,12 +129,12 @@
             <a [routerLink]="['/demande-matieres', demandeMatieres.id, 'view']">{{ demandeMatieres.id }}</a>
           </td-->
           <td>{{ demandeMatieres.date | formatMediumDatetime }}</td>
-          <td>{{ demandeMatieres.indentiteSoumettant }}</td>
+          <!--td>{{ demandeMatieres.indentiteSoumettant }}</td-->
           <td>{{ demandeMatieres.fonction }}</td>
           <td>{{ demandeMatieres.designation }}</td>
           <td>{{ demandeMatieres.quantite }}</td>
-          <td>{{ demandeMatieres.observation }}</td>
-          <td>{{ demandeMatieres.statutSup }}</td>
+          <!--td>{{ demandeMatieres.observation }}</td>
+          <td>{{ demandeMatieres.statutSup }}</td-->
           <td>
             <div *ngIf="demandeMatieres.structure">
               <a [routerLink]="['/structure', demandeMatieres.structure?.id, 'view']">{{ demandeMatieres.structure?.libelleStructure }}</a>
@@ -149,7 +164,7 @@
 
               <button type="submit" (click)="delete(demandeMatieres)" class="btn btn-outline-danger" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>
